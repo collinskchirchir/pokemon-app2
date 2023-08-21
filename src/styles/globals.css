@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+body {
+  background-color: #f0f0f0f0;
+  font-size: 1.2rem;
+  font-family: "Inter", sans-serif;
+}
+
+.all-pokemon{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+  margin: 3rem 15rem;
+}
+
+.all-pokemon .card{
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.04);
+}
+
