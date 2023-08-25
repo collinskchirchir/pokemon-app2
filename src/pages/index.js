@@ -9,7 +9,7 @@ export default function Home() {
         <div className="all-pokemon">
           {allPokemonData ? allPokemonData.map((pokemon) => {
             return (
-              <div key={pokemon.id} className="pokemon">
+              <div key={pokemon.id} className="card">
                 <div className="card-image">
                   <img 
                     src={pokemon.sprites.other.home.front_shiny} 
