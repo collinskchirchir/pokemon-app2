@@ -17,7 +17,9 @@ const reducer = (state, action) => {
     case LOADING: 
       return {...state, loading: true};
     case GET_ALL_POKEMON: 
-      return { ...state, allPokemon: action.payload, loading: false};    
+      return { ...state, allPokemon: action.payload, loading: false};   
+    case GET_POKEMON:
+      return { ...state, pokemon: action.payload, loading: false }; 
   }
   return state;
 }
@@ -36,6 +38,7 @@ export const GlobalProvider = ({children}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [allPokemonData, setAllPokemonData] = useState([]);
   
+  // get first 20 pokemons
   const allPokemon = async () => {
     const res = await fetch(`${baseUrl}pokemon?limit=20`);
     const data = await res.json();
@@ -50,6 +53,14 @@ export const GlobalProvider = ({children}) => {
     }
     setAllPokemonData(allPokemonData);
   };
+
+  // get individual pokemon
+  const getPokemon = async (name) => {
+    dispatch({ type: "LOADING" });
+    const res = await fetch(`${baseUrl}pokemon/${name}`);
+    const data = await res.json();
+    dispatch({ type: "GET_POKEMON", payload: data})
+  }
   
   useEffect(() => {
     allPokemon();
@@ -57,10 +68,12 @@ export const GlobalProvider = ({children}) => {
 
 
   return (
-    <GlobalContext.Provider value={{
-      ...state,
-      allPokemonData
-    }}>
+    <GlobalContext.Provider 
+      value={{
+        ...state,
+        allPokemonData,
+        getPokemon,
+      }}>
       {children}
     </GlobalContext.Provider>
   )
