@@ -1,6 +1,7 @@
 import { useGlobalContext } from '@/context/global';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
+import styles from "@styles/Pokemon.module.css"
 
 function Pokemon() {
    const router = useRouter();

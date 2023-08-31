@@ -1,0 +1,6 @@
+  .PokemonImage {
+   display: flex;
+   justify-content: center;
+   height: 380px
+  }
+  
